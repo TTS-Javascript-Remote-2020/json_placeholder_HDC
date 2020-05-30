@@ -1,0 +1,95 @@
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 62.5%;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+  line-height: 1.6;
+  padding: 3rem;
+}
+
+#container {
+  background-color: #5876a6;
+  background-size: cover;
+  color: #c8ced9;
+  font-size: 2rem;
+  padding: 1rem;
+  text-align: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#loginForm form{
+  font-size: 1.5rem;
+}
+
+#loginForm input {
+  background-color: #c8ced9;
+  color: #5876a6;
+  border-radius: 1rem;
+  padding: .5rem;
+}
+ #loginForm input::placeholder {
+   color: #5876a6;
+ }
+
+ #errorMessage {
+   font-size: 1rem;
+   color: #fc4445;
+ }
+
+ #facts ul {
+   text-align: left;
+   list-style-type: none;
+ }
+
+ #facts li {
+   margin-top: 1.5rem;
+ }
+
+ #facts ul li {
+     color: #c8ced9;
+     text-decoration: none;
+ }
+
+ #facts ul li:hover {
+   font-size: 2.5rem;
+   transition: all .5s ease;
+ }
+
+
+/* Autofill settings */
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+textarea:-webkit-autofill,
+textarea:-webkit-autofill:hover,
+textarea:-webkit-autofill:focus,
+select:-webkit-autofill,
+select:-webkit-autofill:hover,
+select:-webkit-autofill:focus {
+  border: 1px solid #5876a6;
+  -webkit-text-fill-color: #5876a6;
+}
+
+@media (max-width: 540px) {
+  /* .toDoInput {
+    text-align: center;
+  }
+  .toDoInput input[type=text] {
+    min-width: 0;
+    margin-bottom: 1rem;
+  } */
+}
