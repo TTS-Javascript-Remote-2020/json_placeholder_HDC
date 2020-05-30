@@ -2,48 +2,75 @@ const form = document.querySelector('#loginForm form');
 const container = document.querySelector('#container');
 let currentUser = {};
 
+const setNavButtons = (backpage) => {
+  const nav = document.querySelector('#nav');
+  nav.style.display = 'flex';
+  nav.style.justifyContent = 'space-between';
+  const backarrow = document.querySelector('#backarrow');
+  document.querySelector('#logoutButton').onclick = () => history.go(0);
+  switch (backpage) {
+    case 'logout':
+      backarrow.innerText = '';
+      backarrow.style.backgroundColor = '#5876a6';
+      break;
+    case 'facts':
+      backarrow.style.backgroundColor = '#c8ced9';
+      backarrow.onclick = showUserPage;
+      break;
+    default:
+      console.log('Error occurred in navigation.')
+  }
+}
+
 const showError = (error) => {
   const el = document.querySelector('#errorMessage');
   el.innerText = error;
 }
-
+// Don't like how this works, may need to refactor
 const clearSection = (section) => {
   document.querySelector(section).innerText = '';
 }
-// This is where I am
-// const showPic = () => {
-//   const section = document.querySelector('section');
-//   clearSection(section);
-//   fetch('https://picsum.photos/200/300')
-//     .then(response => {
-//       const pic = document.createElement('img');
-//       pic.src = response;
-//       section.appendChild(pic);
-//     })
-//     .catch(error => console.log('An error has occured.'))
-// }
 
-const showUserPage = (currentUser) => {
-  const section = document.querySelector('section');
-  const title = document.createElement('h1');
-  title.innerText = `${currentUser.first_name}'s Cat Facts`;
-  section.appendChild(title);
+const showPic = () => {
+  setNavButtons('facts');
+  const section = document.querySelector('#facts');
+  section.id = 'picture'
+  clearSection('#picture');
+  const pic = document.createElement('img');
+  pic.src = 'https://picsum.photos/200/300';
+  pic.alt = 'some picture from picsum';
+  section.appendChild(pic);
 
-  section.id = 'facts';
-  const list = document.createElement('ul');
+}
 
-  fetch('https://cat-fact.herokuapp.com/facts')
-  .then(response => response.json())
-   .then(data => {
-     for (let i = 0; i < 10; i++) {
-       const item = document.createElement('li');
-       item.innerText = data.all[i].text;
-       // item.onclick = showPic;
-       list.appendChild(item);
-     }
-     section.appendChild(list);
-     container.appendChild(section);
-   })
+const showUserPage = () => {
+  if (currentUser && currentUser.first_name != '') {
+
+    setNavButtons('logout');
+    const section = document.querySelector('section');
+    section.innerText = '';
+    const title = document.createElement('h1');
+    title.innerText = `${currentUser.first_name}'s Cat Facts`;
+    section.appendChild(title);
+
+    section.id = 'facts';
+    const list = document.createElement('ul');
+
+    fetch('https://cat-fact.herokuapp.com/facts')
+    .then(response => response.json())
+     .then(data => {
+       for (let i = 0; i < 10; i++) {
+         const item = document.createElement('li');
+         item.innerText = data.all[i].text;
+         item.onclick = showPic;
+         list.appendChild(item);
+       }
+       section.appendChild(list);
+       container.appendChild(section);
+     })
+  } else {
+    location.reload();
+  }
 }
 
 const checkUser = (email) => {

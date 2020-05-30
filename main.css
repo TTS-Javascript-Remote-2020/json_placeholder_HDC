@@ -27,6 +27,34 @@ body {
   text-align: center;
 
   display: flex;
+  flex-direction: column;
+}
+
+#nav {
+  display: none;
+  padding-bottom: 2rem;
+}
+
+#backarrow {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background-color: #c8ced9;
+
+}
+
+#logoutButton {
+  background-color: #c8ced9;
+  color: #5876a6;
+  border-radius: 1rem;
+  padding: .5rem;
+}
+
+
+
+section {
+  display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
