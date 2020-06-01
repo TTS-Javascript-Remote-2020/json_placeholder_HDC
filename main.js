@@ -10,7 +10,6 @@ const setNavButtons = (backpage) => {
   document.querySelector('#logoutButton').onclick = () => history.go(0);
   switch (backpage) {
     case 'logout':
-      backarrow.innerText = '';
       backarrow.style.backgroundColor = '#5876a6';
       break;
     case 'facts':
